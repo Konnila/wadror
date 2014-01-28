@@ -14,7 +14,10 @@ class RatingsController < ApplicationController
   end
 
   def create
-  	Rating.create beer_id:params[:rating][:beer_id], score:params[:rating][:score]
+    rating = Rating.create params[:rating]
+
+    session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
+
   	redirect_to ratings_path
   end
 
