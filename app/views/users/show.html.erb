@@ -26,8 +26,8 @@
 
 <div>
 	<b>clubs</b>
-	<% @user.memberships.each do |mb| %>
-		<p><%= mb.beer_club.name %></p>
+	<% @user.beer_clubs.each do |bc| %>
+		<p><%= link_to bc.name, bc %></p>
 	<% end %>
 </div>
 <%= link_to 'Edit', edit_user_path(@user) %> |
