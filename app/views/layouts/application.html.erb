@@ -18,7 +18,8 @@
 	<% end %>
 	<% if current_user %>
 		<%= link_to 'signout', signout_path, method: :delete %>
-		<%= link_to 'rate a beer', new_beer_path %>
+		<%= link_to 'rate a beer', new_rating_path %>
+		<%= link_to 'join a club', new_membership_path %>
 	<% else %>
 		<%= link_to 'signin', signin_path %>
 	<% end%>
