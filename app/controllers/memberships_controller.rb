@@ -45,6 +45,9 @@ class MembershipsController < ApplicationController
     @membership.user_id = current_user.id
 
     respond_to do |format|
+      if (Membership.where(user_id:@membership.user_id,beer_club_id:@membership.beer_club_id).count > 0 )
+        format.html { redirect_to new_membership_path, notice: 'You already belong to that club' }
+      end
       if @membership.save
         format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
         format.json { render json: @membership, status: :created, location: @membership }
