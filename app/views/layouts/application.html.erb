@@ -20,6 +20,7 @@
 		<%= link_to 'signout', signout_path, method: :delete %>
 		<%= link_to 'rate a beer', new_rating_path %>
 		<%= link_to 'join a club', new_membership_path %>
+		<%= link_to 'All clubs', beer_clubs_path %> 
 	<% else %>
 		<%= link_to 'signin', signin_path %>
 	<% end%>

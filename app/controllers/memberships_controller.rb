@@ -25,6 +25,7 @@ class MembershipsController < ApplicationController
   # GET /memberships/new.json
   def new
     @membership = Membership.new
+    @beerclubs = BeerClub.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,7 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @membership = Membership.new(params[:membership])
+    @membership.user_id = current_user.id
 
     respond_to do |format|
       if @membership.save

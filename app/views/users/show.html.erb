@@ -23,5 +23,12 @@
    		<br/>
  	<% end %>
 </div>
+
+<div>
+	<b>clubs</b>
+	<% @user.memberships.each do |mb| %>
+		<p><%= mb.beer_club.name %></p>
+	<% end %>
+</div>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
