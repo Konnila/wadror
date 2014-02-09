@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -57,6 +57,9 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    if current_user != @user or params[:username] != nil
+      redirect_to :back
+    end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -73,11 +76,13 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    @user.destroy if current_user == @user
+    session[:user_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
 end
+
